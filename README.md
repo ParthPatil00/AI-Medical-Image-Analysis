@@ -12,6 +12,15 @@
 - `data/README_dataset.txt` — expected dataset layout and download notes.
 - `models/` — place for the trained model.
 - `outputs/` — evaluation outputs.
+## Technology Stack
+
+- **Language:** Python 3.11
+- **Deep learning:** TensorFlow and Keras
+- **Model architecture:** Convolutional Neural Network (CNN)
+- **Image processing:** Pillow and NumPy, where used by the project
+- **Web framework:** Flask
+- **Evaluation:** Scikit-learn and Matplotlib, where used by the project
+- **Version control:** Git and GitHub
 
 ## 1. Requirements
 - Windows 10/11
@@ -78,6 +87,37 @@ The trained model is saved to `models/chest_xray_cnn.keras`.
 python evaluate.py
 ```
 Metrics and a confusion-matrix image are written to `outputs/`.
+## 5.1 Test Results
+
+The trained model was evaluated on a separate test dataset
+containing 624 chest X-ray images.
+
+- Test images: 624
+- Correct predictions: 484
+- Incorrect predictions: 140
+- Test accuracy: 77.56% (approximately 78%)
+
+### Classification Report
+
+| Class | Precision | Recall | F1-score | Support |
+|---|---:|---:|---:|---:|
+| NORMAL | 0.96 | 0.42 | 0.58 | 234 |
+| PNEUMONIA | 0.74 | 0.99 | 0.85 | 390 |
+| Overall accuracy | - | - | 0.78 | 624 |
+
+### Limitations
+
+The model performs differently across the two classes.
+In particular, its recall for NORMAL images is 0.42 on the
+test dataset, meaning that many NORMAL images were classified
+as PNEUMONIA.
+
+The validation dataset contains only 16 images, so its
+validation results should not be considered a reliable estimate
+of generalization performance.
+
+This model is an educational prototype and is not suitable
+for clinical diagnosis or medical decision-making.
 
 ## 6. Run the local web app
 ```cmd
@@ -112,3 +152,17 @@ AI_Medical_Image_Analysis/
 - If installation fails, copy the full error message before retrying.
 - The first TensorFlow installation can take a few minutes and needs internet access.
 - If you get `Model not found`, train the model before launching the web app.
+## Evidence and Screenshots
+
+The `evidence/` directory contains screenshots and files
+documenting the project.
+
+- [Sample X-ray images](evidence/01_sample_images/)
+- [Preprocessing code](evidence/02_preprocessing/preprocessing_code.png)
+- [Training accuracy curve](evidence/03_training/accuracy_curve.png)
+- [Confusion matrix](evidence/04_evaluation/confusion_matrix.png)
+- [Classification report](evidence/04_evaluation/classification_report.json)
+- [Evaluation terminal output](evidence/04_evaluation/evaluation_report.png)
+- [NORMAL prediction](evidence/05_predictions/normal_prediction.png)
+- [PNEUMONIA prediction](evidence/05_predictions/pneumonia_prediction.png)
+- [Web application homepage](evidence/05_predictions/web_app_homepage.png)
