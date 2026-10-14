@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chest X-ray Classifier — Educational Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 18px; line-height: 1.5; color: #202124; }
+    main { border: 1px solid #ddd; border-radius: 14px; padding: 24px; }
+    .warning { background: #fff4d6; border-left: 5px solid #c58b00; padding: 12px 16px; }
+    .error { background: #fde8e8; padding: 12px; border-radius: 8px; }
+    .result { background: #e9f5e9; padding: 16px; border-radius: 8px; }
+    button { padding: 10px 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Chest X-ray Classifier</h1>
+    <p>Upload an image to see the output of a simple educational machine-learning model.</p>
+    <p class="warning"><strong>Important:</strong> This prototype is not a medical device. It cannot diagnose or rule out pneumonia. Do not use its output to make healthcare decisions; consult a qualified healthcare professional.</p>
+    <form method="post" enctype="multipart/form-data">
+      <label for="image">Choose a chest X-ray image (PNG/JPG/JPEG/BMP):</label><br><br>
+      <input id="image" name="image" type="file" accept=".png,.jpg,.jpeg,.bmp" required>
+      <br><br><button type="submit">Analyze image</button>
+    </form>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    {% if result %}
+      <section class="result" aria-live="polite">
+        <h2>Model output: {{ result.label }}</h2>
+        <p>Model confidence estimate: {{ result.confidence }}%</p>
+        <p><strong>{{ result.note }}</strong></p>
+      </section>
+    {% endif %}
+  </main>
+</body>
+</html>
